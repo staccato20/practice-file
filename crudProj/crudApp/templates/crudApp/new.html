@@ -1,0 +1,20 @@
+{% extends 'crudApp/index.html' %}
+{% block content %}
+<section class="page-section bg-primary" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 text-center">
+                <!--form(정보(데이터)를 ‘입력 받을 수 있는’ 태그) 사용하면 장고가 html과 연결된 함수로 알아서 form 전송하므로 
+                    action 속성(사용자가 작성해서 받은 정보(데이터)를‘어디로’ 보내서 처리할 것인지 설정해주는 속성) 작성 필요 X-->
+                <form method="POST"><!--1. 입력받은 폼이 POST를 요청할 경우 / method는 사용자에게 입력 받은 정보(데이터)를 ‘어떤 형식’으로 보내줄지 정해주는 속성-->
+                    {% csrf_token %}<!--csrf_token 확인하고 없다면 403 Forbidden 에러 띄우고 있다면-->
+                    <table>
+                        {{form.as_table}}
+                    </table> 
+                    <button type="submit">작성</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
